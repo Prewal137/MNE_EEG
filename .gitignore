@@ -1,5 +1,6 @@
 data
-results
+results/*
+!results/20260401_automated_comparison/
 notebooks/tests_methods
 *.png
 *.pdf
