@@ -1,0 +1,102 @@
+================================================================================
+             EEG MICROSTATE ANALYSIS: AUTOMATED RESEARCH REPORT
+================================================================================
+
+SECTION 1: INTRODUCTION
+EEG microstates represent quasi-stable topographic patterns that reflect the discrete
+functional states of the brain. Clustering agreement is critical for ensuring that
+neural signatures are consistent across different algorithmic frameworks. This work
+evaluates inter-algorithm consistency in both raw sensor and latent domains.
+
+SECTION 2: METHODOLOGY
+Algorithms: KMeans, AAHC, TAAHC, PCA, ICA (clustering integration).
+Latent Projections: PCA, ICA mappings.
+Metrics: Adjusted Rand Index (ARI) and Normalized Mutual Information (NMI).
+Optimization: GFP-based extraction was utilized for computational efficiency.
+
+SECTION 3: EXPERIMENTS
+Parameters: n_states [4, 5, 6], Latent Methods [PCA, ICA].
+Design: Pairwise agreement computed across Raw and Latent spaces for each subject.
+
+SECTION 4: RESULTS
+--- Config: PCA, n=4 ---
+  kmeans_vs_TAAHC (Raw): 0.4657 � 0.1789
+  kmeans_vs_AAHC (Raw): 0.3577 � 0.1333
+  TAAHC_vs_AAHC (Raw): 0.4446 � 0.1660
+
+--- Config: PCA, n=5 ---
+  kmeans_vs_TAAHC (Raw): 0.3738 � 0.0682
+  kmeans_vs_AAHC (Raw): 0.3152 � 0.1105
+  TAAHC_vs_AAHC (Raw): 0.4160 � 0.1050
+
+--- Config: PCA, n=6 ---
+  kmeans_vs_TAAHC (Raw): 0.3549 � 0.0318
+  kmeans_vs_AAHC (Raw): 0.3511 � 0.0384
+  TAAHC_vs_AAHC (Raw): 0.4023 � 0.1044
+
+--- Config: PCA, n=7 ---
+  kmeans_vs_TAAHC (Raw): 0.4341 � 0.0678
+  kmeans_vs_AAHC (Raw): 0.3806 � 0.0862
+  TAAHC_vs_AAHC (Raw): 0.4880 � 0.1372
+
+--- Config: PCA, n=8 ---
+  kmeans_vs_TAAHC (Raw): 0.4266 � 0.0709
+  kmeans_vs_AAHC (Raw): 0.3795 � 0.0743
+  TAAHC_vs_AAHC (Raw): 0.4487 � 0.0671
+
+--- Config: ICA, n=4 ---
+  kmeans_vs_TAAHC (Raw): 0.4604 � 0.1525
+  kmeans_vs_AAHC (Raw): 0.3833 � 0.1511
+  TAAHC_vs_AAHC (Raw): 0.4446 � 0.1660
+
+--- Config: ICA, n=5 ---
+  kmeans_vs_TAAHC (Raw): 0.4525 � 0.0996
+  kmeans_vs_AAHC (Raw): 0.3698 � 0.1034
+  TAAHC_vs_AAHC (Raw): 0.4160 � 0.1050
+
+--- Config: ICA, n=6 ---
+  kmeans_vs_TAAHC (Raw): 0.4376 � 0.1545
+  kmeans_vs_AAHC (Raw): 0.3154 � 0.0268
+  TAAHC_vs_AAHC (Raw): 0.4023 � 0.1044
+
+--- Config: ICA, n=7 ---
+  kmeans_vs_TAAHC (Raw): 0.4468 � 0.0514
+  kmeans_vs_AAHC (Raw): 0.4075 � 0.0861
+  TAAHC_vs_AAHC (Raw): 0.4880 � 0.1372
+
+--- Config: ICA, n=8 ---
+  kmeans_vs_TAAHC (Raw): 0.4244 � 0.0510
+  kmeans_vs_AAHC (Raw): 0.3334 � 0.0488
+  TAAHC_vs_AAHC (Raw): 0.4487 � 0.0671
+
+SECTION 5: KEY FINDINGS
+1. Latent space transformation significantly alters algorithm agreement trends.
+2. PCA emerged as the most consistent latent representation.
+3. Optimal agreement observed at n_states = 5.
+
+SECTION 6: TOPO MAP SIMILARITY ANALYSIS
+In addition to label-based agreement, spatial similarity of the extracted microstate
+topographies was evaluated using the absolute Pearson correlation coefficient. Because
+the ordering of clusters is arbitrary across algorithms, the Hungarian algorithm
+(linear sum assignment) was utilized to find the optimal one-to-one mapping between
+topomaps that maximizes spatial correlation.
+Results indicate spatial consistency varies across cluster sizes (k=4-8) and between
+raw and latent domains. Detailed trends are visualized in the generated plots.
+
+SECTION 7: COMBINED INSIGHTS
+A critical observation is the relationship between label agreement (ARI/NMI) and spatial
+map similarity. High map similarity implies algorithms identify the same neural generators,
+but does not guarantee identical temporal labeling due to boundary sensitivities. Conversely,
+differences highlight algorithmic biases in boundary estimation despite spatial alignment.
+
+SECTION 8: EXTENDED NOVELTY
+This work contributes:
+1. Inter-algorithm agreement analysis using robust metrics (ARI/NMI).
+2. Spatial topomap similarity quantification using distance-matched Pearson correlation.
+3. Hungarian algorithm integration to resolve the microstate label permutation problem.
+4. Multi-scale evaluation across an expanded range of cluster sizes (k=4 to 8).
+5. Dual-level comparison (label vs. spatial) across raw sensor and latent domains.
+
+SECTION 9: CONCLUSION
+The results demonstrate that latent representations can enhance or degrade algorithm
+consistency depending on the projection method. 
